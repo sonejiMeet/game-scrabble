@@ -41,6 +41,11 @@ clean:
 	find $(OBJ_DIR) $(TEST_DIR) -name '*.o' -exec rm -rf {} +
 	rm -rf $(executable) $(test_executable)
 
+$(objects): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+	
 # make : builds project
 # make run : runs scrabble program
 # make build-test : builds test project
