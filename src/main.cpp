@@ -21,16 +21,13 @@ void clearScreen(){
     #endif
 }
 
-
-using namespace std;
-
 int main(void) {
 
     clearScreen();
     
-    shared_ptr<Scrabble> board = make_shared<Scrabble>();
-    shared_ptr<Tile> tile = make_shared<Tile>();
-    vector<Player> players;
+    std::shared_ptr<Scrabble> board = std::make_shared<Scrabble>();
+    std::shared_ptr<Tile> tile = std::make_shared<Tile>();
+    std::vector<Player> players;
     Word word(board);
     UserInput userInput(board);
     GameState gameState(players, tile);
@@ -87,11 +84,11 @@ int main(void) {
                                         board->printBoard(tile->getBonusTiles(), wordOrientation, mainWordPlacement);
                                         players[i].displayPlayerInfo();        
                                     }
-                                    else cout << ANSI_B_RED << "This grid is not empty. Try again." << ANSI_COLOR_RESET << endl;
+                                    else std::cout << ANSI_B_RED << "This grid is not empty. Try again." << ANSI_COLOR_RESET << std::endl;
                                 
                                 }
-                                else cout  << ANSI_B_RED << "This tile does not exist in your set!" << ANSI_COLOR_RESET << endl;
-                            } else cout  << ANSI_B_RED << players[i].getName() << " has no more tiles left!" << ANSI_COLOR_RESET << std::endl;
+                                else std::cout  << ANSI_B_RED << "This tile does not exist in your set!" << ANSI_COLOR_RESET << std::endl;
+                            } else std::cout  << ANSI_B_RED << players[i].getName() << " has no more tiles left!" << ANSI_COLOR_RESET << std::endl;
                         }
                         else if(userInputTurn == LOCK_IN_WORD){
                             
@@ -110,7 +107,7 @@ int main(void) {
                             }
                             else if (!word.checkWord(wordOnBoard) || !word.isValidWord(wordOnBoard)) {
                                 board->revertBoardState();
-                                cout << ANSI_B_GRN << "Board reverted to previous state" << ANSI_COLOR_RESET << endl;
+                                std::cout << ANSI_B_GRN << "Board reverted to previous state" << ANSI_COLOR_RESET << std::endl;
                                 players[i].revertToPrevSet();
                                 board->printBoard(tile->getBonusTiles());
                                 players[i].displayPlayerInfo();
@@ -123,9 +120,9 @@ int main(void) {
                         else if(userInputTurn == FORFEIT){
                             clearScreen();
                             board->revertBoardState();
-                            cout << ANSI_B_GRN << "Board reverted to previous state" << ANSI_COLOR_RESET << endl;
+                            std::cout << ANSI_B_GRN << "Board reverted to previous state" << ANSI_COLOR_RESET << std::endl;
                             players[i].revertToPrevSet();
-                            cout << ANSI_B_GRN << players[i].getName() <<"'s tile reverted to previous state" << ANSI_COLOR_RESET << endl;
+                            std::cout << ANSI_B_GRN << players[i].getName() <<"'s tile reverted to previous state" << ANSI_COLOR_RESET << std::endl;
                             turnContinues = false;
                         }
                     }

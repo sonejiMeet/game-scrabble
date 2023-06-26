@@ -1,4 +1,4 @@
-#include <gamestate.h>
+#include "gamestate.h"
 
 GameState::GameState(const std::vector<Player>& players, std::shared_ptr<Tile> tile) : players(players), tile(tile){
 
